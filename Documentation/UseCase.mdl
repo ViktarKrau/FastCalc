@@ -97,7 +97,7 @@
 	    (object UseCase "Calculate"
 		quid       	"561A369D02C5"
 		documentation 	
-|Use case "calculate" allows users to perform calculation on entered in special fields operands.
+|Use case "calculate" allows users to perform calculation on entered in edit fields operands.
 |
 |Pre-condition:
 |- Keyboard button key of one of operations was pressed or GUI button that corresponds to one of operations was pressed.
@@ -146,7 +146,7 @@
 |3) Edit operand.
 |
 |Post-condition:
-|- Values of both exponential and numeric form of complex number is changed.
+|- Values of both exponential and numeric form of complex number are changed.
 		
 		visible_modules 	(list dependency_list
 		    (object Dependency_Relationship
@@ -179,7 +179,7 @@
 |
 |Post-condition:
 |- Selected edit field is changed so that digit is added.
-|- Values of both exponential and numeric form of complex number is changed.
+|- Values of both exponential and numeric form of complex number are changed.
 		
 		superclasses 	(list inheritance_relationship_list
 		    (object Inheritance_Relationship
@@ -207,7 +207,7 @@
 |
 |Post-condition:
 |- Selected edit field is changed so that digit is added.
-|- Values of both exponential and numeric form of complex number is changed.
+|- Values of both exponential and numeric form of complex number are changed.
 		
 		superclasses 	(list inheritance_relationship_list
 		    (object Inheritance_Relationship
@@ -327,7 +327,7 @@
 |3) Fill coressponding result's field with copied value.
 |
 |Post-condition:
-|- Operand is changed so that it's value is equal to value of previous result.
+|- Operand is changed so that it's value is equal to value of result of previous calculation.
 		
 		superclasses 	(list inheritance_relationship_list
 		    (object Inheritance_Relationship
@@ -395,7 +395,7 @@
 |
 |Post-condition:
 |- Selected edit field is changed so that digit is added.
-|- Values of both exponential and numeric form of complex number is changed.
+|- Values of both exponential and numeric form of complex number are changed.
 		
 		superclasses 	(list inheritance_relationship_list
 		    (object Inheritance_Relationship
@@ -660,7 +660,7 @@
 			quidu      	"561A369D02C5"
 			height     	118)
 		    (object UseCaseView "Use Case View::Edit operands" @8
-			location   	(1056, 656)
+			location   	(1057, 656)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -673,7 +673,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@8
-			    location   	(1056, 794)
+			    location   	(1057, 794)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
@@ -840,8 +840,8 @@
 			client     	@16
 			supplier   	@8
 			vertices   	(list Points
-			    (1425, 656)
-			    (1164, 656))
+			    (1426, 656)
+			    (1165, 656))
 			line_style 	0)
 		    (object InheritView "" @20
 			stereotype 	TRUE
@@ -851,7 +851,7 @@
 			supplier   	@8
 			vertices   	(list Points
 			    (1412, 425)
-			    (1143, 596))
+			    (1144, 596))
 			line_style 	0)
 		    (object ClassView "Class" "Use Case View::Student" @21
 			ShowCompartmentStereotypes 	TRUE
@@ -923,7 +923,7 @@
 				    (409, 929))
 				line_style 	0)))
 		    (object AssociationViewNew "$UNNAMED$3" @25
-			location   	(677, 791)
+			location   	(678, 790)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -940,26 +940,26 @@
 			roleview_list 	(list RoleViews
 			    (object RoleView "$UNNAMED$4" @26
 				Parent_View 	@25
-				location   	(325, -121)
+				location   	(326, -122)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"561A39A40118"
 				client     	@25
 				supplier   	@8
 				vertices   	(list Points
-				    (677, 791)
-				    (946, 694))
+				    (678, 790)
+				    (947, 692))
 				line_style 	0)
 			    (object RoleView "$UNNAMED$5" @27
 				Parent_View 	@25
-				location   	(325, -121)
+				location   	(326, -122)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"561A39A4011A"
 				client     	@25
 				supplier   	@21
 				vertices   	(list Points
-				    (677, 791)
+				    (678, 790)
 				    (409, 888))
 				line_style 	0)))))))
     root_category 	(object Class_Category "Logical View"
