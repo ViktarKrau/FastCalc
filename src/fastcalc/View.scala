@@ -1,0 +1,31 @@
+package fastcalc
+
+import javafx.scene.Scene
+import javafx.scene.control.TextField
+
+class View(scene : Scene) {
+
+
+  def setResult(value : ComplexNumber) = {
+    setFieldValue("#resreal", value.getReal)
+    setFieldValue("#resimag", value.getImaginary)
+    setFieldValue("#resrad", value.getRadix)
+    setFieldValue("#resexp", value.getExponent)
+  }
+
+  def setOperand(number : Integer, value : ComplexNumber) = {
+    val verifiedNumber = if (number == 1) 1 else 2
+    def com(s : String) =
+      "#" + verifiedNumber.toString + s
+    setFieldValue(com("real"), value.getReal)
+    setFieldValue(com("imag"), value.getImaginary)
+    setFieldValue(com("rad"), value.getRadix)
+    setFieldValue(com("exp"), value.getExponent)
+  }
+
+  private def setFieldValue(id : String, value : Double) =
+    scene.lookup(id) match {
+      case f : TextField => f.setText(value.toString)
+      case _ => throw new Exception("wrong field")
+    }
+}
