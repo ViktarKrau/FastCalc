@@ -17,6 +17,12 @@ class Model(view : View, operand1 : ComplexNumber, operand2 : ComplexNumber) {
       case Division => view.setResult(operand1 / operand2)
     }
 
+  def copyFromResult(operandNumber : Integer): Model = {
+    val result = view.getResult;
+    if (operandNumber == 1) new Model(view, result, operand2)
+    else new Model(view, operand1, result)
+  }
+
   def changeOperand(operandNumber : Integer, fieldType: FieldType, strValue : String) = {
     val numberValue = if (!strValue.isEmpty) strValue.toDouble else 0.0
     val selectedOperand = if (operandNumber == 1) operand1 else operand2

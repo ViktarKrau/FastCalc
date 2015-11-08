@@ -5,6 +5,11 @@ import javafx.scene.control.TextField
 
 class View(scene : Scene) {
 
+  def getResult = {
+    val real = scene.lookup("#resreal").asInstanceOf[TextField].getText.toDouble
+    val imag = scene.lookup("#resimag").asInstanceOf[TextField].getText.toDouble
+    new ComplexNumber(real, imag)
+  }
 
   def setResult(value : ComplexNumber) = {
     setFieldValue("#resreal", value.getReal)
