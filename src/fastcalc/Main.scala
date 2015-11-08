@@ -15,6 +15,7 @@ class Main extends Application {
     val scene = new Scene(root)
     controller.setModel(new Model(new View(scene)))
     stage.setScene(scene)
+    stage.setResizable(false)
     stage.show()
   }
 }

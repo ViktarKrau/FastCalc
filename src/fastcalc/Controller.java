@@ -55,7 +55,6 @@ public class Controller {
     }
 
     public void onOperandChanged(KeyEvent event) {
-
         Object source = event.getSource();
         assert source instanceof TextField;
         TextField field = (TextField) source;
@@ -93,7 +92,6 @@ public class Controller {
     }
 
     public void onToggleNumpad(ActionEvent event) {
-
     }
 
     public void onCalculationStarted(ActionEvent event) {
