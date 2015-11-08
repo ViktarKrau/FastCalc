@@ -28,8 +28,10 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
     new ComplexNumber(real - other.getReal, imaginary - other.getImaginary)
   def *(other : ComplexNumber) =
     makeComplexFromRadixAndExp(other.getRadix * radix, other.getExponent + exponent)
-  def /(other : ComplexNumber) =
+  def /(other : ComplexNumber) = {
+    if (other.getReal == 0.0) throw new IllegalArgumentException()
     makeComplexFromRadixAndExp(radix / other.getRadix, exponent - other.getExponent)
+  }
 
   def setReal(value : Double) =
     new ComplexNumber(value, imaginary)
