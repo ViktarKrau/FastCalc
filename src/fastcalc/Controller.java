@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import jfx.messagebox.MessageBox;
 import scala.Enumeration;
 
 public class Controller {
@@ -147,8 +148,9 @@ public class Controller {
         String id = button.getId();
         try {
             model.calculate(getOperationValueFromString(id));
-        }
-        catch (IllegalArgumentException e) {
+        } catch (ArithmeticException ignored) {
+            MessageBox.show(null, "You can not divide by zero", "Zero division", MessageBox.OK);
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
