@@ -16,6 +16,8 @@ class Main extends Application {
     controller.setModel(new Model(new View(scene)))
     stage.setScene(scene)
     stage.setResizable(false)
+    List("real", "imag", "rad", "exp") foreach
+      (f => List("1", "2") foreach (n => controller.initializeTextField(scene.lookup("#" + n + f).asInstanceOf[TextField])))
     stage.show()
   }
 }
