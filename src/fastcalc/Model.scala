@@ -3,6 +3,8 @@ package fastcalc
 import FieldType._
 import OperationType._
 
+import scala.util.control.Exception
+
 class Model(view : View, operand1 : ComplexNumber, operand2 : ComplexNumber) {
   view.setOperand(1, operand1)
   view.setOperand(2, operand2)
@@ -18,13 +20,18 @@ class Model(view : View, operand1 : ComplexNumber, operand2 : ComplexNumber) {
     }
 
   def copyFromResult(operandNumber : Integer): Model = {
-    val result = view.getResult;
+    val result = view.getResult
     if (operandNumber == 1) new Model(view, result, operand2)
     else new Model(view, operand1, result)
   }
 
   def changeOperand(operandNumber : Integer, fieldType: FieldType, strValue : String) = {
-    val numberValue = if (!strValue.isEmpty) strValue.toDouble else 0.0
+    val numberValue = try {
+        if (!strValue.isEmpty) strValue.toDouble else 0.0
+      }
+      catch {
+        case e : Exception => 0.0
+      }
     val selectedOperand = if (operandNumber == 1) operand1 else operand2
     val newValue = fieldType match {
       case Real => selectedOperand setReal numberValue

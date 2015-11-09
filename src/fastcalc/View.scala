@@ -12,10 +12,10 @@ class View(scene : Scene) {
   }
 
   def setResult(value : ComplexNumber) = {
-    setFieldValue("#resreal", value.getReal)
-    setFieldValue("#resimag", value.getImaginary)
-    setFieldValue("#resrad", value.getRadix)
-    setFieldValue("#resexp", value.getExponent)
+    setResultFieldValue("#resreal", value.getReal)
+    setResultFieldValue("#resimag", value.getImaginary)
+    setResultFieldValue("#resrad", value.getRadix)
+    setResultFieldValue("#resexp", value.getExponent)
   }
 
   def setOperand(number : Integer, value : ComplexNumber) = {
@@ -28,9 +28,15 @@ class View(scene : Scene) {
     setFieldValue(com("exp"), value.getExponent)
   }
 
-  private def setFieldValue(id : String, value : Double) =
+  private def setFieldValue(id : String, value : Double) : Unit =
+    setFieldValue(id, value, (f, v) => f.setText(v.toString))
+
+  private def setFieldValue(id : String, value : Double, outPut : (TextField, Double) => Unit) : Unit =
     scene.lookup(id) match {
-      case f : TextField => f.setText(value.toString)
+      case f : TextField => outPut(f, value)
       case _ => throw new Exception("wrong field")
     }
+
+  private def setResultFieldValue(id : String, value : Double) =
+    setFieldValue(id, value, (f, v) => f.setText("%.4f".format(v)))
 }

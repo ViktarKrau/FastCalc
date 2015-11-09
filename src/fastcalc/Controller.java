@@ -90,12 +90,13 @@ public class Controller {
             event.consume();
             return;
         }
-        char c = event.getCharacter().charAt(0);
+        String character = event.getCharacter();
+        char c = character.isEmpty()? '0' : character.charAt(0);
         if ((c < '0' || c > '9')) {
             if (c == '-') {
                 field.textProperty().addListener(new FieldTextChangeListener(field));
                 String text = field.getText();
-                if (text.charAt(0) == '-') {
+                if (!text.isEmpty() && text.charAt(0) == '-') {
                     text = text.substring(1);
                 }
                 else {
