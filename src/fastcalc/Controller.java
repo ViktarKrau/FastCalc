@@ -39,7 +39,12 @@ public class Controller {
         String number = button.getId();
         if (lastSelectedTextField != null) {
             lastSelectedTextField.textProperty().addListener(new FieldTextChangeListener(lastSelectedTextField));
-            lastSelectedTextField.insertText(caretPosition, number);
+            try {
+                lastSelectedTextField.insertText(caretPosition, number);
+            } catch(IndexOutOfBoundsException ignored) {
+                caretPosition = 0;
+                lastSelectedTextField.insertText(caretPosition, number);
+            }
             ++caretPosition;
         }
     }
@@ -149,7 +154,7 @@ public class Controller {
         try {
             model.calculate(getOperationValueFromString(id));
         } catch (ArithmeticException ignored) {
-            MessageBox.show(null, "You can not divide by zero", "Zero division", MessageBox.OK);
+            MessageBox.show(null, "You can not divide by zero.", "Zero division", MessageBox.OK);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
