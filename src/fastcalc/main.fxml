@@ -2,7 +2,6 @@
 
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fastcalc.Controller">
@@ -161,52 +160,52 @@
         <Button layoutX="574.0" layoutY="65.0" mnemonicParsing="false" onAction="#onCopyToFirst" text="Copy result here" />
         <Button layoutX="574.0" layoutY="104.0" mnemonicParsing="false" onAction="#onCopyToSecond" text="Copy result here" />
         <Separator layoutX="1.0" layoutY="143.0" prefHeight="6.0" prefWidth="683.0" />
-        <Button layoutX="272.0" layoutY="210.0" mnemonicParsing="false" text="1">
+        <Button id="1" layoutX="272.0" layoutY="210.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="1">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="311.0" layoutY="210.0" mnemonicParsing="false" text="2">
+        <Button id="2" layoutX="311.0" layoutY="210.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="2">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="351.0" layoutY="210.0" mnemonicParsing="false" text="3">
+        <Button id="3" layoutX="351.0" layoutY="210.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="3">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="272.0" layoutY="255.0" mnemonicParsing="false" text="4">
+        <Button id="4" layoutX="272.0" layoutY="255.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="4">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="311.0" layoutY="255.0" mnemonicParsing="false" text="5">
+        <Button id="5" layoutX="311.0" layoutY="255.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="5">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="351.0" layoutY="255.0" mnemonicParsing="false" text="6">
+        <Button id="6" layoutX="351.0" layoutY="255.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="6">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="272.0" layoutY="301.0" mnemonicParsing="false" text="7">
+        <Button id="7" layoutX="272.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="7">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="311.0" layoutY="301.0" mnemonicParsing="false" text="8">
+        <Button id="8" layoutX="311.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="8">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="351.0" layoutY="301.0" mnemonicParsing="false" text="9">
+        <Button id="9" layoutX="351.0" layoutY="301.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="9">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="311.0" layoutY="347.0" mnemonicParsing="false" text="0">
+        <Button id="0" layoutX="311.0" layoutY="347.0" mnemonicParsing="false" onAction="#onNumpadButtonClicked" text="0">
             <font>
                 <Font size="18.0" />
             </font>
@@ -231,8 +230,8 @@
                 <Font size="18.0" />
             </font>
         </Button>
-        <Separator layoutY="197.0" prefHeight="6.0" prefWidth="683.0" />
-        <Button fx:id="numpadButton" layoutX="539.0" layoutY="155.0" mnemonicParsing="false" onAction="#onToggleNumpad" prefHeight="39.0" prefWidth="138.0" text="Numpad on">
+        <Separator layoutY="200.0" prefHeight="6.0" prefWidth="683.0" />
+        <Button layoutX="539.0" layoutY="155.0" mnemonicParsing="false" onAction="#onToggleNumpad" prefHeight="39.0" prefWidth="138.0" text="Numpad on">
             <font>
                 <Font size="18.0" />
             </font>

@@ -14,6 +14,7 @@ class Main extends Application {
     val controller : Controller = fxmlLoader.getController[Controller]
     val scene = new Scene(root)
     controller.setModel(new Model(new View(scene)))
+    controller.setStage(stage)
     stage.setScene(scene)
     stage.setResizable(false)
     List("real", "imag", "rad", "exp") foreach
