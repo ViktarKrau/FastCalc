@@ -62,26 +62,10 @@ public class Controller {
             String fieldTypeAsString = id.substring(1);
             int operandNumber = Integer.parseInt(operandNumberAsString);
             try {
-                model = model.changeOperand(operandNumber, getFieldTypeValueFromString(fieldTypeAsString), newValue);
+                model = model.changeOperand(operandNumber, FieldType.getValueFromString(fieldTypeAsString), newValue);
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
-        }
-
-        private Enumeration.Value getFieldTypeValueFromString(String id) throws IllegalArgumentException {
-            switch (id) {
-                case "real":
-                    return FieldType.Real();
-                case "imag":
-                    return FieldType.Imaginary();
-                case "rad":
-                    return FieldType.Radix();
-                case "exp":
-                    return FieldType.Exponent();
-                default:
-                    assert false;
-            }
-            throw new IllegalArgumentException("wrong field type: " + id);
         }
 
         private TextField field;
@@ -152,7 +136,7 @@ public class Controller {
         Button button = (Button)source;
         String id = button.getId();
         try {
-            model.calculate(getOperationValueFromString(id));
+            model.calculate(OperationType.getValueFromString(id));
         } catch (ArithmeticException ignored) {
             MessageBox.show(null, "You can not divide by zero.", "Zero division", MessageBox.OK);
         } catch (IllegalArgumentException e) {
@@ -163,22 +147,6 @@ public class Controller {
 
     private void onCopyToOperand(int opNumber) {
         model = model.copyFromResult(opNumber);
-    }
-
-    private static Enumeration.Value getOperationValueFromString(String id) throws IllegalArgumentException {
-        switch (id) {
-            case "mult":
-                return OperationType.Multiplication();
-            case "div":
-                return OperationType.Division();
-            case "add":
-                return OperationType.Addition();
-            case "sub":
-                return OperationType.Subtraction();
-            default:
-                assert false;
-        }
-        throw new IllegalArgumentException("wrong operation: ");
     }
 
     TextField lastSelectedTextField = null;
