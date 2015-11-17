@@ -13,10 +13,6 @@ public class Controller {
     static final double MINIMIZED_HEIGHT = 230.0;
     static final double MAXIMIZED_HEIGHT = 430.0;
 
-    public Controller() {
-
-    }
-
     public void setModel(Model model) {
         this.model = model;
     }
