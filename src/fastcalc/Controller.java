@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import jfx.messagebox.MessageBox;
-import scala.Enumeration;
 
 public class Controller {
     static final double MINIMIZED_HEIGHT = 230.0;
