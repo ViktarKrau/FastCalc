@@ -3,10 +3,48 @@ package test
 import fastcalc.ComplexNumber
 import org.scalatest.FlatSpec
 
-class ComplexNumberSpec extends FlatSpec{
-  "A ComplexNumber" should "return zero if it is zero and is divided by any other number" in {
-    val complexZero = new ComplexNumber()
-    assert(complexZero / new ComplexNumber(1, 2) === complexZero)
+import scala.annotation.tailrec
+import scala.util.Random
+
+class ComplexNumberSpec extends FlatSpec {
+  val MAX_TEST_COUNT = 100
+  val random = new Random()
+  @tailrec
+  private def generateNonZeroRandomDouble() : Double = {
+    val result = random.nextDouble()
+    if (result == 0.0) generateNonZeroRandomDouble()
+    else result
+  }
+
+  @tailrec
+  private def assertEqualComplex(iteration : Int, valueGenerator : () => ComplexNumber,
+                                 resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
+                                 otherGenerator : () => ComplexNumber,
+                                 function : (ComplexNumber, ComplexNumber) => ComplexNumber) : Unit = {
+    if (iteration != 0) {
+      val a = valueGenerator()
+      val b = otherGenerator()
+      assert(function(a, b) === resultGenerator(a, b))
+      assertEqualComplex(iteration - 1, valueGenerator, resultGenerator, otherGenerator, function)
+    }
+  }
+
+  val complexZero = new ComplexNumber()
+  private def getComplexZero() = complexZero
+  private def getComplexZero(a : ComplexNumber, b : ComplexNumber) = complexZero
+  private def generateNonZeroComplex() = new ComplexNumber(generateNonZeroRandomDouble(), generateNonZeroRandomDouble())
+  private def generateComplex() = new ComplexNumber(random.nextDouble(), random.nextDouble())
+
+  "A zero ComplexNumber" should "return zero if it is is divided by any other non-zero complex number" in {
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, getComplexZero, generateNonZeroComplex, (a, b) => a / b)
+  }
+
+  it should "return zero if it is multiplied by any other non-zero complex number" in {
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, getComplexZero, generateNonZeroComplex, (a, b) => a * b)
+  }
+
+  it should "return other number if it is added to other number" in {
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => b, generateComplex, (a, b) => a + b)
   }
 
 }
