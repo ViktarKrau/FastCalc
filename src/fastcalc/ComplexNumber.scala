@@ -39,8 +39,9 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
   def -(other : ComplexNumber) =
     new ComplexNumber(real - other.getReal, imaginary - other.getImaginary)
   def *(other : ComplexNumber) = {
-    val newradix = radix * other.getRadix
-    makeComplexFromRadixAndExp(newradix, if (newradix != 0.0) other.getExponent + exponent else 0.0)
+    val newReal = real * other.getReal - imaginary * other.getImaginary
+    val newImag = real * other.getImaginary + imaginary * other.getReal
+    new ComplexNumber(newReal, newImag)
   }
   def /(other : ComplexNumber) = {
     if (other.getReal == 0.0) throw new ArithmeticException()

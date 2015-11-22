@@ -29,7 +29,7 @@ class View(scene : Scene) {
   }
 
   private def setFieldValue(id : String, value : Double) : Unit =
-    setFieldValue(id, value, (f, v) => f.setText(v.toString))
+    setFieldValue(id, value, (f, v) => f.setText("%f".format(v)))
 
   private def setFieldValue(id : String, value : Double, outPut : (TextField, Double) => Unit) : Unit =
     scene.lookup(id) match {
