@@ -15,6 +15,9 @@ class ComplexNumberSpec extends FlatSpec {
     else result
   }
 
+  protected def generateNonZeroComplex() = new ComplexNumber(generateNonZeroRandomDouble(), generateNonZeroRandomDouble())
+  protected def generateComplex() = new ComplexNumber(random.nextDouble(), random.nextDouble())
+
   @tailrec
   protected final def assertEqualComplex(iteration : Int, valueGenerator : () => ComplexNumber,
                                  resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,

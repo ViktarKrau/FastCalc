@@ -8,9 +8,6 @@ class ComplexZeroSpec extends ComplexNumberSpec {
   val complexZero = new ComplexNumber()
   private def getComplexZero() = complexZero
   private def getComplexZero(a : ComplexNumber, b : ComplexNumber) = complexZero
-  private def generateNonZeroComplex() = new ComplexNumber(generateNonZeroRandomDouble(), generateNonZeroRandomDouble())
-  private def generateComplex() = new ComplexNumber(random.nextDouble(), random.nextDouble())
-
   private def testComplexZero(resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
                               otherGenerator : () => ComplexNumber,
                               function : (ComplexNumber, ComplexNumber) => ComplexNumber) =
@@ -35,7 +32,5 @@ class ComplexZeroSpec extends ComplexNumberSpec {
   it should "return complex number, which is equal to -b when b is subtracted from it" in {
     testComplexZero((a, b) => new ComplexNumber(-b.getReal, -b.getImaginary), generateComplex, (a, b) => a - b)
   }
-
-
 
 }
