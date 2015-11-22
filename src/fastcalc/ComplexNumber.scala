@@ -1,5 +1,9 @@
 package fastcalc
 
+import org.scalactic._
+import TripleEquals._
+import Tolerance._
+
 object ComplexNumber {
   private def calcRadix(real : Double, imaginary : Double) =
     math.sqrt(real * real + imaginary * imaginary)
@@ -10,6 +14,14 @@ object ComplexNumber {
     radix * math.cos(exponent)
   private def calcImaginary(radix : Double, exponent : Double) =
     radix * math.sin(exponent)
+  private def equalNumbers(a : Double, b : Double) =
+    a === b +- .0005
+  private def equalComplex(a : ComplexNumber, b : ComplexNumber) = {
+    equalNumbers(a.getReal, b.getReal) &&
+      equalNumbers(a.getImaginary, b.getImaginary) &&
+      equalNumbers(a.getRadix, b.getRadix) &&
+      equalNumbers(a.getExponent, b.getExponent)
+  }
 }
 
 class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent : Double) {
@@ -35,6 +47,9 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
     val newradix = radix / other.getRadix
     makeComplexFromRadixAndExp(newradix, if (newradix != 0.0) exponent - other.getExponent else 0.0)
   }
+
+  def ===(other : ComplexNumber) =
+    ComplexNumber.equalComplex(this, other)
 
   def setReal(value : Double) =
     new ComplexNumber(value, imaginary)
