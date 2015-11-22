@@ -47,4 +47,12 @@ class ComplexNumberSpec extends FlatSpec {
     assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => b, generateComplex, (a, b) => a + b)
   }
 
+  it should "return other number if it is subtracted from other number" in {
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => b, generateComplex, (a, b) => b - a)
+  }
+
+  it should "return complex number, which is " in {
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => new ComplexNumber(-b.getReal, -b.getImaginary),
+      generateComplex, (a, b) => a - b)
+  }
 }
