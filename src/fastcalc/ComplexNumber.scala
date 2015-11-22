@@ -39,7 +39,7 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
   def -(other : ComplexNumber) =
     new ComplexNumber(real - other.getReal, imaginary - other.getImaginary)
   def *(other : ComplexNumber) = {
-    val newradix = radix / other.getRadix
+    val newradix = radix * other.getRadix
     makeComplexFromRadixAndExp(newradix, if (newradix != 0.0) other.getExponent + exponent else 0.0)
   }
   def /(other : ComplexNumber) = {
@@ -47,6 +47,9 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
     val newradix = radix / other.getRadix
     makeComplexFromRadixAndExp(newradix, if (newradix != 0.0) exponent - other.getExponent else 0.0)
   }
+
+  override def toString = super.toString + " with values: "  +
+    real.toString + " " + imaginary.toString + " " + radix.toString + " " + exponent.toString
 
   def ===(other : ComplexNumber) =
     ComplexNumber.equalComplex(this, other)

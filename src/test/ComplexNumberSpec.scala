@@ -10,7 +10,7 @@ class ComplexNumberSpec extends FlatSpec {
   protected val random = new Random()
   @tailrec
   protected final def generateNonZeroRandomDouble() : Double = {
-    val result = random.nextDouble()
+    val result = random.nextDouble() * 1000
     if (result == 0.0) generateNonZeroRandomDouble()
     else result
   }
