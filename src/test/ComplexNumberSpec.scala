@@ -35,24 +35,30 @@ class ComplexNumberSpec extends FlatSpec {
   private def generateNonZeroComplex() = new ComplexNumber(generateNonZeroRandomDouble(), generateNonZeroRandomDouble())
   private def generateComplex() = new ComplexNumber(random.nextDouble(), random.nextDouble())
 
+  private def testComplexZero(resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
+                              otherGenerator : () => ComplexNumber,
+                              function : (ComplexNumber, ComplexNumber) => ComplexNumber) =
+    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, resultGenerator, otherGenerator, function)
+
   "A zero ComplexNumber" should "return zero if it is is divided by any other non-zero complex number" in {
-    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, getComplexZero, generateNonZeroComplex, (a, b) => a / b)
+    testComplexZero(getComplexZero, generateNonZeroComplex, (a, b) => a / b)
   }
 
   it should "return zero if it is multiplied by any other non-zero complex number" in {
-    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, getComplexZero, generateNonZeroComplex, (a, b) => a * b)
+    testComplexZero(getComplexZero, generateNonZeroComplex, (a, b) => a * b)
   }
 
   it should "return other number if it is added to other number" in {
-    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => b, generateComplex, (a, b) => a + b)
+    testComplexZero((a, b) => b, generateComplex, (a, b) => a + b)
   }
 
   it should "return other number if it is subtracted from other number" in {
-    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => b, generateComplex, (a, b) => b - a)
+    testComplexZero((a, b) => b, generateComplex, (a, b) => b - a)
   }
 
   it should "return complex number, which is equal to -b when b is subtracted from it" in {
-    assertEqualComplex(MAX_TEST_COUNT, getComplexZero, (a, b) => new ComplexNumber(-b.getReal, -b.getImaginary),
-      generateComplex, (a, b) => a - b)
+    testComplexZero((a, b) => new ComplexNumber(-b.getReal, -b.getImaginary), generateComplex, (a, b) => a - b)
   }
+
+
 }
