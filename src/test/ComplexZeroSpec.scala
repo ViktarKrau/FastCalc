@@ -1,8 +1,9 @@
 package test
 
 import fastcalc.ComplexNumber
+import org.scalatest.Matchers
 
-class ComplexZeroSpec extends ComplexNumberSpec {
+class ComplexZeroSpec extends ComplexNumberSpec with Matchers{
 
   val TEST_COUNT = 100
   val complexZero = new ComplexNumber()
@@ -33,4 +34,9 @@ class ComplexZeroSpec extends ComplexNumberSpec {
     testComplexZero((a, b) => new ComplexNumber(-b.getReal, -b.getImaginary), generateComplex, (a, b) => a - b)
   }
 
+  it should "throw ArithmeticException when is divisor" in {
+    a [ArithmeticException] should be thrownBy {
+      testComplexZero((a, b) => a, generateComplex, (a, b) => b / a)
+    }
+  }
 }
