@@ -18,5 +18,4 @@ class ComplexRandomSpec extends ComplexNumberSpec {
   it should "return a complex number (x - u, yi - vi) after subtracting another complex number (u, v) from it" in {
     randomTest((a, b) => new ComplexNumber(a.getReal - b.getReal, a.getImaginary - b.getImaginary), (a, b) => a - b)
   }
-
 }
