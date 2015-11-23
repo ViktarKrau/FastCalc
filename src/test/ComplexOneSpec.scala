@@ -12,19 +12,19 @@ class ComplexOneSpec extends ComplexNumberSpec {
   }
 
   it should "have radix of one" in {
-    complexSelfTest(1, () => complexOne, (a) => 1, a => a.getRadix)
+    complexSelfRadixTest(1, () => complexOne, (a) => 1)
   }
 
   it should "have zero exponent" in {
-    complexSelfTest(1, () => complexOne, (a) => .0, a => a.getExponent)
+    complexSelfExponentTest(1, () => complexOne, (a) => .0)
   }
 
   "A ComplexNumber (-1, 0)" should "have radix of one" in {
-    complexSelfTest(1, () => complexMinusOne, (a) => 1, a => a.getRadix)
+    complexSelfRadixTest(1, () => complexMinusOne, (a) => 1)
   }
 
   it should "have zero exponent" in {
-    complexSelfTest(1, () => complexMinusOne, (a) => .0, a => a.getExponent)
+    complexSelfExponentTest(1, () => complexMinusOne, (a) => .0)
   }
 
   "A ComplexNumber" should "return (-real, -imag) when multiplied by -1" in {

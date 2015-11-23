@@ -44,6 +44,15 @@ class ComplexNumberSpec extends FlatSpec {
     }
   }
 
+  protected final def complexSelfRadixTest(iteration : Int, valueGenerator : () => ComplexNumber,
+                                           resultGenerator : (ComplexNumber) => Double) =
+    complexSelfTest(iteration, valueGenerator, resultGenerator, (a) => a.getRadix)
+
+
+  protected final def complexSelfExponentTest(iteration : Int, valueGenerator : () => ComplexNumber,
+                                           resultGenerator : (ComplexNumber) => Double) =
+    complexSelfTest(iteration, valueGenerator, resultGenerator, (a) => a.getExponent)
+
   "A complex number" should "be valid, i.e. equal to itself" in {
     val complex = generateComplex()
     assert(complex === complex)

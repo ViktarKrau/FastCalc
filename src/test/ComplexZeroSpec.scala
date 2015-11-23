@@ -39,4 +39,12 @@ class ComplexZeroSpec extends ComplexNumberSpec with Matchers{
       testComplexZero((a, b) => a, generateComplex, (a, b) => b / a)
     }
   }
+
+  it should "have zero exponent" in {
+    complexSelfExponentTest(1, () => complexZero, (a) => .0)
+  }
+
+  it should "have zero radix" in {
+    complexSelfRadixTest(1, () => complexZero, (a) => .0)
+  }
 }
