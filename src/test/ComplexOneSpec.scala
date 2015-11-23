@@ -11,7 +11,23 @@ class ComplexOneSpec extends ComplexNumberSpec {
     assertEqualComplex(TEST_COUNT, () => complexOne, (a, b) => b, generateNonZeroComplex, (a, b) => a * b)
   }
 
-  "A ComplexNumber" should "return (-getReal, -getImag) when multiplied by -1" in {
+  it should "have radix of one" in {
+    complexSelfTest(1, () => complexOne, (a) => 1, a => a.getRadix)
+  }
+
+  it should "have zero exponent" in {
+    complexSelfTest(1, () => complexOne, (a) => .0, a => a.getExponent)
+  }
+
+  "A ComplexNumber (-1, 0)" should "have radix of one" in {
+    complexSelfTest(1, () => complexMinusOne, (a) => 1, a => a.getRadix)
+  }
+
+  it should "have zero exponent" in {
+    complexSelfTest(1, () => complexMinusOne, (a) => .0, a => a.getExponent)
+  }
+
+  "A ComplexNumber" should "return (-real, -imag) when multiplied by -1" in {
     assertEqualComplex(TEST_COUNT, () => complexMinusOne, (a, b) => new ComplexNumber(-b.getReal, -b.getImaginary),
       generateNonZeroComplex, (a, b) => a * b)
   }
@@ -24,5 +40,4 @@ class ComplexOneSpec extends ComplexNumberSpec {
   it should "return itself when divided by one" in {
     assertEqualComplex(TEST_COUNT, generateNonZeroComplex, (a, b) => a, () => complexOne, (a, b) => a / b)
   }
-
 }

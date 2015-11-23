@@ -1,10 +1,12 @@
 package test
 
 import fastcalc.ComplexNumber
+import org.scalactic.Tolerance._
 import org.scalatest.FlatSpec
 
 import scala.annotation.tailrec
 import scala.util.Random
+
 
 class ComplexNumberSpec extends FlatSpec {
   protected val random = new Random()
@@ -28,6 +30,17 @@ class ComplexNumberSpec extends FlatSpec {
       val b = otherGenerator()
       assert(function(a, b) === resultGenerator(a, b))
       assertEqualComplex(iteration - 1, valueGenerator, resultGenerator, otherGenerator, function)
+    }
+  }
+
+  @tailrec
+  protected final def complexSelfTest(iteration : Int, valueGenerator : () => ComplexNumber,
+                                      resultGenerator : (ComplexNumber) => Double,
+                                      function : (ComplexNumber) => Double) : Unit = {
+    if (iteration != 0) {
+      val testedVal = valueGenerator()
+      assert(resultGenerator(testedVal) === function(testedVal) +- 0.0001)
+      complexSelfTest(iteration - 1, valueGenerator, resultGenerator, function)
     }
   }
 
