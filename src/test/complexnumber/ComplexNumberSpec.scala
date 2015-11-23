@@ -21,16 +21,33 @@ class ComplexNumberSpec extends FlatSpec {
   protected def generateComplex() = new ComplexNumber(random.nextDouble(), random.nextDouble())
 
   @tailrec
-  protected final def assertEqualComplex(iteration : Int, valueGenerator : () => ComplexNumber,
-                                 resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
-                                 otherGenerator : () => ComplexNumber,
-                                 function : (ComplexNumber, ComplexNumber) => ComplexNumber) : Unit = {
+  protected final def assertEqualResults[T](iteration : Int, valueGenerator : () => ComplexNumber,
+                                            resultGenerator : (ComplexNumber, ComplexNumber) => T,
+                                            otherGenerator : () => ComplexNumber,
+                                            function : (ComplexNumber, ComplexNumber) => T,
+                                            comparerEqual : (T, T) => Boolean) : Unit = {
     if (iteration != 0) {
       val a = valueGenerator()
       val b = otherGenerator()
-      assert(function(a, b) === resultGenerator(a, b))
-      assertEqualComplex(iteration - 1, valueGenerator, resultGenerator, otherGenerator, function)
+      assert(comparerEqual(function(a, b), resultGenerator(a, b)))
+      assertEqualResults(iteration - 1, valueGenerator, resultGenerator, otherGenerator, function, comparerEqual)
     }
+  }
+
+  protected final def assertEqualDoubleResult(iteration : Int, valueGenerator : () => ComplexNumber,
+                                              resultGenerator : (ComplexNumber, ComplexNumber) => Double,
+                                              otherGenerator : () => ComplexNumber,
+                                              function : (ComplexNumber, ComplexNumber) => Double) : Unit = {
+    assertEqualResults(iteration, valueGenerator, resultGenerator, otherGenerator, function,
+      (a : Double, b : Double) => a === b +- 0.0001)
+  }
+
+  protected final def assertEqualComplexResult(iteration : Int, valueGenerator : () => ComplexNumber,
+                                               resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
+                                               otherGenerator : () => ComplexNumber,
+                                               function : (ComplexNumber, ComplexNumber) => ComplexNumber) : Unit = {
+    assertEqualResults(iteration, valueGenerator, resultGenerator, otherGenerator, function,
+      (a : ComplexNumber, b : ComplexNumber) => a === b)
   }
 
   @tailrec

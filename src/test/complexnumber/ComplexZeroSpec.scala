@@ -12,7 +12,7 @@ class ComplexZeroSpec extends ComplexNumberSpec with Matchers{
   private def testComplexZero(resultGenerator : (ComplexNumber, ComplexNumber) => ComplexNumber,
                               otherGenerator : () => ComplexNumber,
                               function : (ComplexNumber, ComplexNumber) => ComplexNumber) =
-    assertEqualComplex(TEST_COUNT, getComplexZero, resultGenerator, otherGenerator, function)
+    assertEqualComplexResult(TEST_COUNT, getComplexZero, resultGenerator, otherGenerator, function)
 
   "A zero ComplexNumber" should "return zero if it is is divided by any other non-zero complex number" in {
     testComplexZero(getComplexZero, generateNonZeroComplex, (a, b) => a / b)

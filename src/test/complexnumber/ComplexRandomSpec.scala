@@ -7,7 +7,7 @@ class ComplexRandomSpec extends ComplexNumberSpec {
 
   private def randomTest(expected : (ComplexNumber, ComplexNumber) => ComplexNumber,
                           tested : (ComplexNumber, ComplexNumber) => ComplexNumber) = {
-    assertEqualComplex(TEST_COUNT, generateComplex, expected, generateComplex, tested)
+    assertEqualComplexResult(TEST_COUNT, generateComplex, expected, generateComplex, tested)
   }
 
   "A ComplexNumber (x + iy)" should "return a complex number (" +
@@ -35,5 +35,10 @@ class ComplexRandomSpec extends ComplexNumberSpec {
   it should "have imaginary part equal to rad * sin(e)" in {
     complexSelfTest(TEST_COUNT, generateNonZeroComplex, (a) => a.getImaginary,
       (a) => a.getRadix * math.sin(a.getExponent))
+  }
+
+  it should "when multiplied by b return complex number, radix of which is equal to it\' radix * b\'s radix" in {
+    assertEqualDoubleResult(TEST_COUNT, generateNonZeroComplex, (a, b) => (a * b).getRadix, generateNonZeroComplex,
+      (a, b) => a.getRadix * b.getRadix)
   }
 }
