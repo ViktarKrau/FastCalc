@@ -17,11 +17,12 @@ class ComplexOneSpec extends ComplexNumberSpec {
   }
 
   it should "return (-getReal, -getImag) when divided by -1" in {
-    assertEqualComplex(TEST_COUNT, () => complexMinusOne, (a, b) => new ComplexNumber(-b.getReal, -b.getImaginary),
-      generateNonZeroComplex, (a, b) => a / b)
+    assertEqualComplex(TEST_COUNT, generateNonZeroComplex, (a, b) => new ComplexNumber(-a.getReal, -a.getImaginary),
+      () => complexMinusOne, (a, b) => a / b)
   }
 
   it should "return itself when divided by one" in {
-    assertEqualComplex(TEST_COUNT, () => complexMinusOne, (a, b) => b, generateNonZeroComplex, (a, b) => a / b)
+    assertEqualComplex(TEST_COUNT, generateNonZeroComplex, (a, b) => a, () => complexOne, (a, b) => a / b)
   }
+
 }

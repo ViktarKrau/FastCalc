@@ -45,8 +45,10 @@ class ComplexNumber(real : Double, imaginary : Double, radix : Double, exponent 
   }
   def /(other : ComplexNumber) = {
     if (other.getReal == 0.0) throw new ArithmeticException()
-    val newradix = radix / other.getRadix
-    makeComplexFromRadixAndExp(newradix, if (newradix != 0.0) exponent - other.getExponent else 0.0)
+    val realUp = getReal * other.getReal + imaginary * other.getImaginary
+    val down = other.getReal * other.getReal + other.getImaginary * other.getImaginary
+    val imagUp = getImaginary * other.getReal - getReal * other.getImaginary
+    new ComplexNumber(realUp / down, imagUp / down)
   }
 
   override def toString = super.toString + " with values: "  +
