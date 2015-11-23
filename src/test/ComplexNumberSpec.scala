@@ -30,4 +30,9 @@ class ComplexNumberSpec extends FlatSpec {
       assertEqualComplex(iteration - 1, valueGenerator, resultGenerator, otherGenerator, function)
     }
   }
+
+  "A complex number" should "be valid, i.e. equal to itself" in {
+    val complex = generateComplex()
+    assert(complex === complex)
+  }
 }
