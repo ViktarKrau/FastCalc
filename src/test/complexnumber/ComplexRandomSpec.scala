@@ -20,11 +20,20 @@ class ComplexRandomSpec extends ComplexNumberSpec {
   }
 
   it should "have radix equal to sqrt of sum of squares of real and imaginary parts" in {
-    complexSelfRadixTest(100, generateNonZeroComplex,
+    complexSelfRadixTest(TEST_COUNT, generateNonZeroComplex,
       (a) => math.sqrt(a.getReal * a.getReal + a.getImaginary * a.getImaginary))
   }
 
   it should "have exponent equal to atan imag/real" in {
-    complexSelfExponentTest(100, generateNonZeroComplex, (a) => math.atan(a.getImaginary / a.getReal))
+    complexSelfExponentTest(TEST_COUNT, generateNonZeroComplex, (a) => math.atan(a.getImaginary / a.getReal))
+  }
+
+  it should "have real equal to rad * cos(e)" in {
+    complexSelfTest(TEST_COUNT, generateNonZeroComplex, (a) => a.getReal, (a) => a.getRadix * math.cos(a.getExponent))
+  }
+
+  it should "have imaginary part equal to rad * sin(e)" in {
+    complexSelfTest(TEST_COUNT, generateNonZeroComplex, (a) => a.getImaginary,
+      (a) => a.getRadix * math.sin(a.getExponent))
   }
 }
