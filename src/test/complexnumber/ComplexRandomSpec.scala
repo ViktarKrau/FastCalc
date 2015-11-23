@@ -1,4 +1,4 @@
-package test
+package test.complexnumber
 
 import fastcalc.ComplexNumber
 
@@ -27,6 +27,4 @@ class ComplexRandomSpec extends ComplexNumberSpec {
   it should "have exponent equal to atan imag/real" in {
     complexSelfExponentTest(100, generateNonZeroComplex, (a) => math.atan(a.getImaginary / a.getReal))
   }
-
-
 }

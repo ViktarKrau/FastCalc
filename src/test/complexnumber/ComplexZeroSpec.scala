@@ -1,4 +1,4 @@
-package test
+package test.complexnumber
 
 import fastcalc.ComplexNumber
 import org.scalatest.Matchers
