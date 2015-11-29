@@ -42,8 +42,4 @@ class ComplexRandomSpec extends ComplexNumberSpec {
       (a, b) => a.getRadix * b.getRadix)
   }
 
-  it should "when multiplied by b return complex number, exp of which is it\'s exp + b\'s exp" in {
-    assertEqualResults(TEST_COUNT, generateComplex, (a, b) => (a * b).getExponent,
-      generateComplex, (a, b) => a.getExponent + b.getExponent, (a, b) => a.)
-  }
 }
